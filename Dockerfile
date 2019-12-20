@@ -1,17 +1,8 @@
-FROM node:10.15.0
+FROM node:12.13.1
 
-RUN npm install -g gulp
-RUN npm install -g bower
-RUN npm install gulp
-RUN npm link gulp
+RUN npm install -g gulp && \
+    npm install -g bower && \
+    npm install && \
+    bower install --allow-root
 
-COPY package*.json ./
-COPY bower.json ./
-RUN npm install
-RUN bower install --allow-root
-
-ADD polis.config.template.js polis.config.js
-
-ADD . .
-
-RUN gulp prodBuildNoDeploy
+# RUN gulp prodBuildNoDeploy
